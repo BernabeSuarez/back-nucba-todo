@@ -23,8 +23,9 @@ export const createTodo = async (req, res) => {
 
 export const updateTodo = async (req, res) => {
     try {
-        const updateItem = await Todo.findByIdAndUpdate(req.params.id, { $set: req.body })
-        res.send("Item Update")
+        const id = req.params.id
+        const updateItem = await Todo.findByIdAndUpdate(id, { $set: req.body })
+        res.send("Item Update").json({ "data": updateItem })
     } catch (error) {
         console.log(error)
     }
@@ -32,8 +33,9 @@ export const updateTodo = async (req, res) => {
 
 export const deleteTodo = async (req, res) => {
     try {
-        const deleteItem = await Todo.findByIdAndDelete(req.params.id)
-        res.send("Deleted")
+        const id = req.params.id
+        const deleteItem = await Todo.findByIdAndDelete(id)
+        res.json("Item Deleted")
     } catch (error) {
 
     }
